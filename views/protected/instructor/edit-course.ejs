@@ -1,0 +1,26 @@
+<%- include('../../partials/header') %>
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow rounded">
+  <h2 class="text-2xl font-bold mb-4">Edit Course</h2>
+
+  <form action="/instructor/courses/<%= course._id %>/edit" method="POST" class="space-y-4">
+    <div>
+      <label for="title" class="block font-semibold">Course Title</label>
+      <input type="text" name="title" id="title" required
+             value="<%= course.title %>"
+             class="w-full px-4 py-2 border rounded focus:outline-none" />
+    </div>
+
+    <div>
+      <label for="description" class="block font-semibold">Description</label>
+      <textarea name="description" id="description" rows="4"
+                class="w-full px-4 py-2 border rounded focus:outline-none"><%= course.description %></textarea>
+    </div>
+
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+      Save Changes
+    </button>
+  </form>
+</div>
+
+<%- include('../../partials/footer') %>

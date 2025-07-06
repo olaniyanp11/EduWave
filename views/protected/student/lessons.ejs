@@ -1,0 +1,24 @@
+<%- include('../../partials/header') %>
+
+<section class="min-h-screen bg-gray-100 py-10 px-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold text-[#22664e] mb-4">Lessons for: <%= course.title %></h1>
+
+    <% if (lessons.length === 0) { %>
+      <p class="text-gray-600">No lessons uploaded for this course yet.</p>
+    <% } else { %>
+      <ul class="space-y-4">
+        <% lessons.forEach(lesson => { %>
+          <li class="bg-white p-4 rounded shadow flex justify-between items-center">
+            <div>
+              <h2 class="text-lg font-semibold"><%= lesson.title %></h2>
+            </div>
+            <a href="/student/lessons/<%= lesson._id %>" class="text-green-600 hover:underline">View</a>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../../partials/footer') %>

@@ -1,0 +1,119 @@
+<!-- partials/header.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title || "E-Learning App" %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- Navbar -->
+<header class="bg-white border-b border-gray-200 shadow-sm z-50">
+  <div class="w-[90%] mx-auto flex justify-between items-center py-4">
+    <!-- Logo -->
+    <a href="/" class="text-2xl font-bold text-[#22664e]">EduWave</a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-6 text-sm items-center text-gray-600 font-medium">
+      <a href="/" class="hover:text-[#22664e]">Home</a>
+      <a href="#about" class="hover:text-[#22664e]">About</a>
+
+      <% if (user) { %>
+        <% if (user.role === 'student') { %>
+          <a href="/student/dashboard" class="hover:text-[#22664e]">Dashboard</a>
+          <a href="/student/courses" class="hover:text-[#22664e]">My Courses</a>
+          <a href="/student/explore" class="hover:text-[#22664e]">Explore Courses</a>
+  
+        <% } else if (user.role === 'instructor') { %>
+          <a href="/instructor/dashboard" class="hover:text-[#22664e]">Dashboard</a>
+          <a href="/instructor/courses" class="hover:text-[#22664e]">Courses</a>
+          <a href="/instructor/courses" class="hover:text-[#22664e]">Upload Lesson</a>
+          <a href="/instructor/quiz-manager" class="hover:text-[#22664e]">Quizzes</a>
+        <% } else if (user.role === 'admin') { %>
+          <a href="/admin/dashboard" class="hover:text-[#22664e]">Admin Panel</a>
+          <a href="/admin/users" class="hover:text-[#22664e]">Manage Users</a>
+        <% } %>
+        <a href="/logout" class="text-red-500 hover:text-red-600">Logout</a>
+      <% } else { %>
+        <a href="/login" class="bg-[#22664e] text-white px-6 py-2 rounded-full hover:bg-green-700">Login</a>
+      <% } %>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="md:hidden">
+      <button id="menuToggle" class="text-gray-700 focus:outline-none">
+        <i class="fas fa-bars text-xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div id="mobileMenu" class="hidden md:hidden bg-[#1a1a1a] text-white flex flex-col space-y-5 py-6 px-6 text-sm transition-all duration-200">
+    <a href="/" class="hover:text-[#22664e]">Home</a>
+    <a href="#about" class="hover:text-[#22664e]">About</a>
+
+    <% if (user) { %>
+      <% if (user.role === 'student') { %>
+        <a href="/student/dashboard" class="hover:text-[#22664e]">Dashboard</a>
+        <a href="/student/courses" class="hover:text-[#22664e]">My Courses</a>
+        <a href="/student/assessments" class="hover:text-[#22664e]">Quizzes</a>
+      <% } else if (user.role === 'instructor') { %>
+        <a href="/instructor/dashboard" class="hover:text-[#22664e]">Dashboard</a>
+        <a href="/instructor/courses" class="hover:text-[#22664e]">Courses</a>
+        <a href="/instructor/courses" class="hover:text-[#22664e]">Upload Lesson</a>
+     
+      <% } else if (user.role === 'admin') { %>
+        <a href="/admin/dashboard" class="hover:text-[#22664e]">Admin Panel</a>
+        <a href="/admin/users" class="hover:text-[#22664e]">Manage Users</a>
+      <% } %>
+      <a href="/logout" class="text-red-400 hover:text-red-500">Logout</a>
+    <% } else { %>
+      <a href="/login" class="text-white bg-[#22664e] px-5 py-2 rounded-full text-center">Login</a>
+    <% } %>
+  </div>
+</header>
+
+<!-- Flash Messages -->
+<% if (typeof success_msg !== 'undefined' && success_msg.length > 0) { %>
+  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md bg-green-500 text-white px-4 py-3 rounded shadow flex justify-between items-center mb-4">
+    <span><%= success_msg %></span>
+    <button onclick="this.parentElement.remove()" class="text-white font-bold">&times;</button>
+  </div>
+<% } %>
+
+<% if (typeof error_msg !== 'undefined' && error_msg.length > 0) { %>
+  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-500 text-white px-4 py-3 rounded shadow flex justify-between items-center mb-4">
+    <span><%= error_msg %></span>
+    <button onclick="this.parentElement.remove()" class="text-white font-bold">&times;</button>
+  </div>
+<% } %>
+
+<% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+  <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-md bg-red-600 text-white px-4 py-3 rounded shadow mb-4">
+    <ul class="list-disc pl-5">
+      <% errors.forEach(function(error) { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+    <button onclick="this.parentElement.remove()" class="text-white font-bold float-right mt-2">&times;</button>
+  </div>
+<% } %>
+
+<!-- AOS & Mobile Script -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('mobileMenu');
+  toggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>

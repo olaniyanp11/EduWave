@@ -1,0 +1,70 @@
+<%- include('../../partials/header') %>
+
+<section class="min-h-screen bg-gray-100 py-10 px-6">
+  <div class="max-w-3xl mx-auto bg-white rounded shadow p-6">
+    
+    <!-- Lesson Title -->
+    <h1 class="text-2xl font-bold mb-4 text-[#22664e]"><%= lesson.title %></h1>
+
+    <!-- Lesson Video -->
+    <% if (lesson.video) { %>
+      <div class="mb-6">
+        <video controls class="w-full rounded shadow">
+          <source src="/uploads/videos/<%= lesson.video %>" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    <% } %>
+
+    <!-- Lesson Content -->
+    <div class="text-gray-700 leading-relaxed mb-6 whitespace-pre-line">
+      <%- lesson.content %>
+    </div>
+
+    <!-- Quiz Button -->
+    <% if (quizAvailable) { %>
+      <a href="/student/lessons/<%= lesson._id %>/quiz" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Take Quiz
+      </a>
+    <% } else { %>
+      <p class="text-gray-500 italic">No quiz available for this lesson.</p>
+    <% } %>
+
+    <!-- Divider -->
+    <hr class="my-8">
+
+    <!-- Comment Form -->
+    <div class="mb-6">
+      <h2 class="text-xl font-semibold mb-2 text-[#22664e]">Leave a Comment</h2>
+      <form action="/student/lessons/<%= lesson._id %>/comment" method="POST">
+        <textarea name="message" rows="3" required placeholder="Your thoughts..."
+          class="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-green-400"></textarea>
+        <button type="submit" class="mt-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+          Post Comment
+        </button>
+      </form>
+    </div>
+
+    <!-- Comments List -->
+    <div>
+      <h2 class="text-xl font-semibold mb-4 text-[#22664e]">Comments</h2>
+
+      <% if (comments.length === 0) { %>
+        <p class="text-gray-500 italic">No comments yet. Be the first to comment!</p>
+      <% } else { %>
+        <div class="space-y-4">
+          <% comments.forEach(comment => { %>
+            <div class="bg-gray-50 p-4 rounded shadow-sm">
+              <p class="text-sm text-green-700 font-semibold"><%= comment.user?.name || "Anonymous" %></p>
+              <p class="text-gray-800 mt-1"><%= comment.message %></p>
+              <p class="text-xs text-gray-500 mt-1"><%= new Date(comment.postedAt).toLocaleString() %></p>
+            </div>
+          <% }) %>
+        </div>
+      <% } %>
+    </div>
+
+  </div>
+</section>
+
+<%- include('../../partials/footer') %>

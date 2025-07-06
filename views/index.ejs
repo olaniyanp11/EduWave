@@ -1,0 +1,156 @@
+<%- include('./partials/header') %>
+<!-- Add AOS CSS in the header partial or here -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+    @keyframes typing {
+      from { width: 0 }
+  to { width: calc(var(--ch, 7ch) + 1ch); }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    .typing-animation {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 2px solid #22664e;
+      width: 0;
+      vertical-align: bottom;
+      animation: typing 3s steps(var(--steps, 7), end) forwards, blink 0.7s step-end infinite;
+    }
+    </style>
+ 
+
+<section class="min-h-screen bg-gray-100 grid grid-cols-1 sm:grid-cols-2 px-4 sm:px-10 justify-center items-center pb-5">
+  <div data-aos="fade-up" data-aos-duration="1200">
+    <h1 class="font-bold text-4xl sm:text-5xl -tracking-tight">
+      Welcome to EduWave — Learn
+      <span class="text-[#22664e] typing-animation"></span>
+    </h1>
+    <p class="text-sm tracking-widest py-2">Empowering students and instructors with an interactive learning experience.</p>
+
+    <div class="pt-5">
+    <a href="" class="bg-[#22664e] py-4 px-8 rounded-4xl text-white text-md">Login</a>
+    <a href="" class="bg-white py-4 px-8 rounded-4xl text-[#22664e] text-md">Register</a>
+    </div>
+  </div>
+  <div class="bg-none" data-aos="zoom-in" data-aos-duration="1200">
+    <img src="/images/hero.png" alt="">
+  </div>
+</section>
+<section class="min-h-screen bg-[#22664e] text-white grid grid-cols-1 sm:grid-cols-2 px-4 sm:px-10 justify-center items-center pb-5">
+   <div class="w-[90%]" data-aos="fade-up" data-aos-duration="1200">
+   <h2 class="font-semibold text-2xl border-l-4 border-[#22664e] pl-5 gap-6">About the Platform</h2>
+  <p class="tracking-wider "> 
+EduWave is a web-based E-learning platform designed to simplify teaching and learning for both students and instructors. With responsive design and interactive  features, EduWave ensures accessible, engaging education—anytime, anywhere.</p>
+   </div>
+<div class=" flex justify-center" data-aos="zoom-in" data-aos-duration="1200">
+  <img src="/images/ani.gif" alt="">
+</div>
+</section>
+<section class="features-section" style="padding: 2rem; background-color: #f9f9f9;">
+  <h2 style="text-align: center;" data-aos="fade-down" data-aos-duration="1000">✅ Key Features</h2>
+  <div style="max-width: 800px; margin: auto; padding-top: 1rem;">
+  <div style="margin-bottom: 1.5rem;" data-aos="fade-up" data-aos-delay="100">
+    <h3>📚 Create & Manage Courses</h3>
+    <p>Instructors can easily create, upload, and organize a variety of learning materials—including text, videos, and external resources—under each course, ensuring structured and up-to-date content delivery.</p>
+  </div>
+
+  <div style="margin-bottom: 1.5rem;" data-aos="fade-up" data-aos-delay="200">
+    <h3>🧑‍🏫 Interactive Lessons</h3>
+    <p>Students can actively engage with course content through clearly organized lessons. Each lesson supports multimedia content and provides space for learners to interact and reflect.</p>
+  </div>
+
+  <div style="margin-bottom: 1.5rem;" data-aos="fade-up" data-aos-delay="300">
+    <h3>💬 Comment System</h3>
+    <p>Every lesson includes a comment section where students can ask questions, seek clarification, or share ideas. This fosters communication between students and instructors, creating a more collaborative learning environment.</p>
+  </div>
+
+  <div style="margin-bottom: 1.5rem;" data-aos="fade-up" data-aos-delay="400">
+    <h3>🔐 Role-Based Access</h3>
+    <p>The platform ensures secure login and access management. Features and permissions are tailored to each user role—students, instructors, or administrators—ensuring appropriate access to content and functionalities.</p>
+  </div>
+
+  <div style="margin-bottom: 1.5rem;" data-aos="fade-up" data-aos-delay="500">
+    <h3>📱 Mobile-Friendly Design</h3>
+    <p>The user interface is fully responsive, making it accessible across devices—smartphones, tablets, and computers—so learning can happen anytime, anywhere.</p>
+  </div>
+  </div>
+</section>
+
+<section class="bg-gray-100 py-16 px-6">
+  <h2 class="text-2xl font-bold text-center mb-10 text-gray-800" data-aos="fade-down" data-aos-duration="1000">Why Choose EduWave?</h2>
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+
+  <!-- Card 1 -->
+  <div class="bg-[#22664e] text-white p-6 rounded-lg shadow-md hover:scale-105 transition duration-300" data-aos="flip-left" data-aos-delay="100">
+    <div class="flex items-center mb-4">
+    <!-- Clock Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"></svg>
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6l4 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <h3 class="text-lg font-semibold">Flexible Learning</h3>
+    </div>
+    <p>Study at your own pace with 24/7 access to lessons and materials from any device, anywhere.</p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="bg-[#22664e] text-white p-6 rounded-lg shadow-md hover:scale-105 transition duration-300" data-aos="flip-left" data-aos-delay="200">
+    <div class="flex items-center mb-4">
+    <!-- Book Icon -->
+        <h3 class="text-lg font-semibold">Instructor Control</h3>
+      </div>
+      <p>Instructors can easily manage courses and lessons, and interact directly with their students.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-[#22664e] text-white p-6 rounded-lg shadow-md hover:scale-105 transition duration-300">
+      <div class="flex items-center mb-4">
+        <!-- Chat Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 3.866-3.582 7-8 7-1.264 0-2.453-.262-3.5-.732L3 20l1.732-5.196A7.963 7.963 0 013 12c0-3.866 3.582-7 8-7s8 3.134 8 7z" />
+        </svg>
+        <h3 class="text-lg font-semibold">Engaging Environment</h3>
+      </div>
+      <p>With interactive lessons and a built-in comment system, students remain actively involved in learning.</p>
+    </div>
+
+  </div>
+</section>
+
+   <script>
+ document.addEventListener('DOMContentLoaded', function() {
+  const words = [
+    {text: 'Anytime', steps: 7},
+    {text: 'Anywhere', steps: 8}
+  ];
+  const el = document.querySelector('.typing-animation');
+  let idx = 0;
+
+  function typeWord() {
+    const {text, steps} = words[idx];
+    el.textContent = text;
+    el.style.setProperty('--ch', `${text.length}ch`);
+    el.style.setProperty('--steps', steps);
+    el.style.width = '0';
+    el.style.animation = 'none';
+    void el.offsetWidth; // reflow
+    el.style.animation = `typing 1.5s steps(${steps}, end) forwards, blink 0.7s step-end infinite`;
+    setTimeout(() => {
+      // After typing, set width to auto so the full word is visible
+      el.style.width = 'auto';
+      setTimeout(() => {
+        el.style.animation = 'none';
+        el.textContent = '';
+        el.style.width = '0';
+        setTimeout(() => {
+          idx = (idx + 1) % words.length;
+          typeWord();
+        }, 400);
+      }, 1000); // pause after typing
+    }, 1500); // typing duration
+  }
+  typeWord();
+});
+ </script>
+<%- include('./partials/footer') %>

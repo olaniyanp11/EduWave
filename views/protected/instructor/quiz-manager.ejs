@@ -1,0 +1,60 @@
+<%- include('../../partials/header') %>
+
+<section class="min-h-screen bg-gray-100 py-10 px-6">
+  <div class="max-w-6xl mx-auto bg-white rounded shadow p-6">
+    <h1 class="text-3xl font-bold mb-6 text-green-700 flex items-center gap-2">
+      <i class="fas fa-tasks text-green-600"></i> Quiz Manager
+    </h1>
+
+    <% if (lessons.length === 0) { %>
+      <p class="text-gray-600">No lessons uploaded yet.
+        <a href="/instructor/upload-lesson" class="text-green-600 underline hover:text-green-800">
+          Upload a lesson
+        </a> to get started.
+      </p>
+    <% } else { %>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm border">
+          <thead class="bg-green-800 text-white">
+            <tr>
+              <th class="py-3 px-4 text-left">Lesson Title</th>
+              <th class="py-3 px-4 text-left">Course</th>
+              <th class="py-3 px-4 text-left">Quiz Status</th>
+              <th class="py-3 px-4 text-left">Action</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white">
+            <% lessons.forEach(lesson => { %>
+              <tr class="border-b hover:bg-gray-50">
+                <td class="py-2 px-4 font-medium text-gray-800"><%= lesson.title %></td>
+                <td class="py-2 px-4 text-gray-700"><%= lesson.course?.title || "No Course" %></td>
+                <td class="py-2 px-4">
+                  <% if (quizMap[lesson._id.toString()]) { %>
+                    <span class="text-green-600 font-semibold">✔ Quiz Created</span>
+                  <% } else { %>
+                    <span class="text-red-500 font-semibold">✖ No Quiz</span>
+                  <% } %>
+                </td>
+                <td class="py-2 px-4">
+                  <% if (quizMap[lesson._id.toString()]) { %>
+                    <a href="/instructor/quiz/<%= quizMap[lesson._id.toString()] %>/questions" class="text-blue-600 hover:underline">
+                      Manage Quiz
+                    </a>
+                  <% } else { %>
+                    <form action="/instructor/lessons/<%= lesson._id %>/quiz/create" method="POST">
+                      <button type="submit" class="text-white bg-green-600 hover:bg-green-700 px-4 py-1 rounded text-sm">
+                        Create Quiz
+                      </button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('../../partials/footer') %>

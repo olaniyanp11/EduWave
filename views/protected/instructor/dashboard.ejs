@@ -1,0 +1,120 @@
+<!-- protected/instructor/dashboard.ejs -->
+<%- include('../../partials/header') %>
+
+<section class="dashboard flex min-h-screen bg-gray-100">
+<div class="sidebar overflow-hidden w-[20%] bg-[#22664e] text-white flex flex-col justify-between p-6 transition-all duration-300 relative">
+  <!-- Toggle Button -->
+  <button id="toggle-sidebar" class="bg-[#22664e] hover:bg-[#22664e] p-2 rounded-r absolute top-6 right-0 transform translate-x-1/2 z-50 shadow-lg transition">
+    <i class="fas fa-chevron-left"></i>
+  </button>
+  <div>
+    <h2 class="text-2xl font-bold mb-8 flex items-center gap-2">
+      <i class="fas fa-user-tie text-green-300 pr-3"></i>
+      Welcome, <span class="font-bold">Instructor</span>
+    </h2>
+    <ul class="space-y-4 text-base">
+      <li>
+        <a href="/instructor/courses" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-book"></i>
+          My Courses
+        </a>
+      </li>
+      <li>
+        <a href="/instructor/create-course" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-plus-circle"></i>
+          Create New Course
+        </a>
+      </li>
+      <li>
+        <a href="/instructor/courses" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-video"></i>
+          Upload Lesson
+        </a>
+      </li>
+      <li>
+        <a href="/instructor/quiz-manager" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-clipboard-list"></i>
+          Manage Quizzes
+        </a>
+      </li>
+      <li>
+        <a href="/instructor/students" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-users"></i>
+          Enrolled Students
+        </a>
+      </li>
+      <li>
+        <a href="/" class="flex items-center gap-3 hover:text-green-300 transition pr-3">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+      </li>
+    </ul>
+  </div>
+  <a href="/logout" class="flex items-center gap-2 text-sm mt-10 text-red-300 hover:text-red-500 transition pr-3">
+    <i class="fas fa-sign-out-alt"></i>
+    Logout
+  </a>
+</div>
+
+
+  <main class="w-[80%] p-6">
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Courses created -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa fa-folder-open text-2xl text-red-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Courses Created</h2>
+        <p class="text-3xl font-bold mt-2"><%= courseCount %></p>
+      </div>
+
+      <!-- Total enrollments -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa fa-users text-2xl text-blue-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Total Enrollments</h2>
+        <p class="text-3xl font-bold mt-2"><%= enrollmentCount %></p>
+      </div>
+
+      <!-- Lessons uploaded -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa fa-video text-2xl text-green-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Lessons Uploaded</h2>
+        <p class="text-3xl font-bold mt-2"><%= lessonCount %></p>
+        <p class="text-sm mt-2 text-gray-600">Keep your materials up to date.</p>
+      </div>
+    </section>
+
+    <!-- Recent activity -->
+    <h2 class="text-2xl font-bold mt-10 mb-4 flex items-center gap-2" data-aos="fade-up">
+      <i class="fa fa-graduation-cap text-blue-500"></i>
+      Recent Instructor Activities
+    </h2>
+
+    <% if (recentActivities && recentActivities.length) { %>
+      <ul class="bg-white rounded-lg shadow divide-y text-gray-700">
+        <% recentActivities.forEach(a => { %>
+          <li class="p-4">
+            <span class="font-medium"><%= a.action %></span>
+            <span class="text-xs text-gray-500">
+              — <%= new Date(a.createdAt).toLocaleString() %>
+            </span>
+          </li>
+        <% }) %>
+      </ul>
+    <% } else { %>
+      <div class="bg-white rounded-lg shadow p-6 text-gray-700">
+        <p>No recent activity yet. Start by creating a course or uploading a lesson.</p>
+      </div>
+    <% } %>
+  </main>
+</section>
+<script>
+  const toggleBtn = document.getElementById('toggle-sidebar');
+  const sidebar = toggleBtn.parentElement;
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('w-0');
+    sidebar.classList.toggle('w-[20%]');
+  });
+</script>
+
+<%- include('../../partials/footer') %>

@@ -1,0 +1,99 @@
+<%- include('../../partials/header') %>
+
+<section class="dashboard flex min-h-screen bg-gray-100">
+  <!-- Sidebar -->
+     <div class="w-[20%] bg-green-800 text-white flex flex-col justify-between p-6 relative overflow-hidden">
+    <!-- Toggle Button -->
+     <button id="toggle-sidebar" class="bg-green-800 border-white p-2 rounded-r absolute top-[5%] right-0 transform -translate-y-1/2 z-50">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  <div>
+    <h2 class="text-xl font-semibold mb-6">Welcome <span class="font-bold">Student</span></h2>
+    <ul class="space-y-4">
+      <li>
+       <a href="/student/dashboard" class="hover:text-green-300 flex items-center gap-2">
+        <i class="fa fa-tachometer-alt"></i> Dashboard
+       </a>
+      </li>
+      <li>
+       <a href="/student/courses" class="hover:text-green-300 flex items-center gap-2">
+        <i class="fa fa-book"></i> My Courses
+       </a>
+      </li>
+      <li>
+       <a href="/student/explore" class="hover:text-green-300 flex items-center gap-2">
+        <i class="fa fa-search"></i> Explore Courses
+       </a>
+      </li>
+      <li>
+       <a href="/student/scores" class="hover:text-green-300 flex items-center gap-2">
+        <i class="fa fa-chart-bar"></i> Quiz Scores
+       </a>
+      </li>
+      <li>
+       <a href="/" class="hover:text-green-300 flex items-center gap-2">
+        <i class="fa fa-home"></i> Home
+       </a>
+      </li>
+    </ul>
+   </div>
+</div>
+  <!-- Main Content -->
+  <main class="w-[80%] p-6">
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Enrolled Courses -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="100">
+        <i class="fa fa-book-open text-2xl text-red-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Enrolled Courses</h2>
+        <p class="text-3xl font-bold mt-2"><%= courses.length %></p>
+      </div>
+
+      <!-- Instructors -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="200">
+        <i class="fa fa-chalkboard-teacher text-2xl text-blue-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Instructors</h2>
+        <p class="text-3xl font-bold mt-2">
+          <%= [...new Set(courses.map(c => c.instructor?.toString()))].length %>
+        </p>
+      </div>
+
+      <!-- Total Lessons -->
+      <div class="bg-white rounded-lg shadow p-6" data-aos="fade-up" data-aos-delay="300">
+        <i class="fa fa-clock text-2xl text-green-500 mb-2"></i>
+        <h2 class="text-lg font-semibold">Total Lessons</h2>
+        <p class="text-3xl font-bold mt-2">
+          <%= courses.reduce((sum, course) => sum + (course.lessons?.length || 0), 0) %>
+        </p>
+      </div>
+    </section>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4 flex items-center gap-2" data-aos="fade-up">
+      <i class="fa fa-graduation-cap text-blue-500"></i>
+      Recent Activities
+    </h2>
+
+    <div class="bg-white rounded-lg shadow p-6 text-gray-700">
+      <% if (courses.length === 0) { %>
+        <p>You haven't enrolled in any course yet. Explore courses to get started.</p>
+      <% } else { %>
+        <ul class="list-disc pl-6">
+          <% courses.forEach(course => { %>
+            <li>
+              <strong><%= course.title %></strong> by <%= course.instructor?.name || 'Instructor' %>
+            </li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+  </main>
+</section>
+<script>
+  const toggleBtn = document.getElementById('toggle-sidebar');
+  const sidebar = toggleBtn.parentElement;
+
+  toggleBtn.addEventListener('click', () => {
+    sidebar.classList.toggle('w-0');
+    sidebar.classList.toggle('w-[20%]');
+  });
+</script>
+<%- include('../../partials/footer') %>
