@@ -1,4 +1,4 @@
-# Login-Auth-Template# EduWave
+# EduWave
 create a . env file  add the contents below
         dbURL='mongodb://0.0.0.0:27017/school-Elearning'
         # dbURL='mongodb+srv://tester:xuu8gKwGVPTyGKl6@cluster0.vgpzmvs.mongodb.net/school-portal'
