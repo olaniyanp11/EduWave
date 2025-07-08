@@ -58,7 +58,7 @@ app.use(async (req, res, next)=>{
 
 app.listen(3000,
     async () => { // Make the callback async to use await
-        console.log('🚀 Server running on http://localhost:3000');
+        console.log(`🚀 Server running on http://localhost:3000`);
         try {
             await mongoose.connect(process.env.dbURL);
             console.log('✅ Connected to MongoDB');
