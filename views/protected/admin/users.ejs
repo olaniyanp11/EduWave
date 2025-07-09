@@ -20,7 +20,7 @@
             <td class="px-4 py-4">
               <% if (user.role !== 'admin') { %>
                 <form action="/admin/users/<%= user._id %>/delete" method="POST">
-                  <button class="bg-red-600 py-3  px-6 hover:bg-red-500">Delete</button>
+                  <button class="bg-red-600 py-3 text-white  px-6 hover:bg-red-500">Delete</button>
                 </form>
               <% } %>
             </td>
